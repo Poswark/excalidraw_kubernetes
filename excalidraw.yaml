@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: "1.30.0 (9d8dcb518)"
+  creationTimestamp: null
+  labels:
+    io.kompose.network/root-default: "true"
+    io.kompose.service: excalidraw
+  name: excalidraw
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: excalidraw
+  template:
+    metadata:
+      labels:
+        io.kompose.network/root-default: "true"
+        io.kompose.service: excalidraw
+    spec:
+      containers:
+        - env:
+            - name: NODE_ENV
+              value: development
+          image: excalidraw/excalidraw
+          name: excalidraw
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          resources: {}
+          volumeMounts:
+            - mountPath: /opt/node_app
+              name: data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: data
+  strategy: {}
+  minReadySeconds: 0
+  revisionHistoryLimit: 10
+  paused: false
+  progressDeadlineSeconds: 600
+status: {}
+
