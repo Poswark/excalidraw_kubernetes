@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  annotations:
+    deployment.kubernetes.io/desired-replicas: "1"
+    deployment.kubernetes.io/max-replicas: "2"
+    deployment.kubernetes.io/revision: "1"
+    meta.helm.sh/release-name: my-excalidraw
+    meta.helm.sh/release-namespace: default
+  creationTimestamp: "2023-09-23T15:54:54Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/instance: my-excalidraw
+    app.kubernetes.io/name: excalidraw
+    pod-template-hash: f4d9b8fd8
+  name: my-excalidraw-f4d9b8fd8
+  namespace: excalidraw
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Deployment
+    name: my-excalidraw
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: my-excalidraw
+      app.kubernetes.io/name: excalidraw
+      pod-template-hash: f4d9b8fd8
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: my-excalidraw
+        app.kubernetes.io/name: excalidraw
+    spec:
+      containers:
+      - image: excalidraw/excalidraw:latest
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: http
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: excalidraw
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: http
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources: {}
+        securityContext: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: my-excalidraw
+      serviceAccountName: my-excalidraw
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 1
+  fullyLabeledReplicas: 1
+  observedGeneration: 1
+  readyReplicas: 1
+  replicas: 1
