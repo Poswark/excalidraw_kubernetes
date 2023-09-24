@@ -64,20 +64,11 @@ spec:
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}
-      serviceAccount: my-excalidraw
-      serviceAccountName: my-excalidraw
+      serviceAccount: my-excalidraw-service
+      serviceAccountName: my-excalidraw-service
       terminationGracePeriodSeconds: 30
 status:
   availableReplicas: 1
-  conditions:
-    message: Deployment has minimum availability.
-    reason: MinimumReplicasAvailable
-    status: "True"
-    type: Available
-    message: ReplicaSet "my-excalidraw-f4d9b8fd8" has successfully progressed.
-    reason: NewReplicaSetAvailable
-    status: "True"
-    type: Progressing
   observedGeneration: 1
   readyReplicas: 1
   replicas: 1

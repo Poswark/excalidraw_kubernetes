@@ -6,7 +6,7 @@ metadata:
     deployment.kubernetes.io/max-replicas: "2"
     deployment.kubernetes.io/revision: "1"
     meta.helm.sh/release-name: my-excalidraw
-    meta.helm.sh/release-namespace: default
+    meta.helm.sh/release-namespace: excalidraw
   creationTimestamp: "2023-09-23T15:54:54Z"
   generation: 1
   labels:
@@ -21,6 +21,9 @@ metadata:
     controller: true
     kind: Deployment
     name: my-excalidraw
+    uid: 1bc6b163-a3ef-4f10-bd4a-4ee1a41e9440
+  resourceVersion: "14173"
+  uid: c2744d3e-e3bd-46bb-b665-a38ed41043f2
 spec:
   replicas: 1
   selector:
@@ -33,6 +36,7 @@ spec:
       labels:
         app.kubernetes.io/instance: my-excalidraw
         app.kubernetes.io/name: excalidraw
+        pod-template-hash: f4d9b8fd8
     spec:
       containers:
       - image: excalidraw/excalidraw:latest
@@ -68,8 +72,8 @@ spec:
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}
-      serviceAccount: my-excalidraw
-      serviceAccountName: my-excalidraw
+      serviceAccount: my-excalidraw-service
+      serviceAccountName: my-excalidraw-service
       terminationGracePeriodSeconds: 30
 status:
   availableReplicas: 1
