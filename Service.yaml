@@ -8,7 +8,7 @@ metadata:
     app.kubernetes.io/instance: my-excalidraw
     app.kubernetes.io/name: excalidraw
     app.kubernetes.io/version: v0.15.0
-  name: my-excalidraw-service
+  name: my-excalidraw
   namespace: excalidraw
 spec:
   internalTrafficPolicy: Cluster

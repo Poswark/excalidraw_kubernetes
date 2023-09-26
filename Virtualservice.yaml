@@ -14,7 +14,7 @@ spec:
             prefix: /  # Cambia esto al prefijo de URL que desees
       route:
         - destination:
-            host: my-excalidraw-service.default.svc.cluster.local
+            host: my-excalidraw.excalidraw.svc.cluster.local
             port:
               number: 80
 

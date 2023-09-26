@@ -64,8 +64,8 @@ spec:
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}
-      serviceAccount: my-excalidraw-service
-      serviceAccountName: my-excalidraw-service
+      serviceAccount: my-excalidraw
+      serviceAccountName: my-excalidraw
       terminationGracePeriodSeconds: 30
 status:
   availableReplicas: 1
@@ -73,3 +73,4 @@ status:
   readyReplicas: 1
   replicas: 1
   updatedReplicas: 1
+
